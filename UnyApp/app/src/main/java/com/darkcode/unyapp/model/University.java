@@ -11,15 +11,18 @@ public class University {
     private String url;
     private String logo;
 
+    private String department;
+
     public University() {
     }
 
-    public University(int id, String name, String information, String url, String logo) {
+    public University(int id, String name, String information, String url, String logo, String department) {
         this.id = id;
         this.name = name;
         this.information = information;
         this.url = url;
         this.logo = logo;
+        this.department = department;
     }
 
     public int getId() {
@@ -60,5 +63,13 @@ public class University {
 
     public void setLogo(String logo) {
         this.logo = logo;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
     }
 }
