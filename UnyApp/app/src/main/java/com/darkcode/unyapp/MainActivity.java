@@ -11,6 +11,12 @@ public class MainActivity extends Activity implements SearchView.OnQueryTextList
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+		
+		getActionBar().addOnMenuVisibilityListener(new ActionBar.OnMenuVisibilityListener(){
+			public void onMenuVisibilityChanged(boolean b){
+				
+			}
+		});
         getActionBar().hide();
     }
 
