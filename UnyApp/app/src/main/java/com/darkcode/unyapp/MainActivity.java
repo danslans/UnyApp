@@ -10,6 +10,8 @@ import android.view.*;
 import android.widget.Toast;
 
 import com.darkcode.unyapp.adapters.UniversityAdapter;
+import com.darkcode.unyapp.cad.UniversityCAD;
+import com.darkcode.unyapp.model.Department;
 import com.darkcode.unyapp.model.University;
 
 import java.util.ArrayList;
@@ -19,14 +21,20 @@ public class MainActivity extends Activity implements SearchView.OnQueryTextList
     private RecyclerView recyclerView;
     private UniversityAdapter adapter;
     private ArrayList<University> arrayList =new ArrayList<>();
+    private UniversityCAD universityCAD;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+        universityCAD= new UniversityCAD(getApplicationContext());
+        testInsert();
         recyclerView=(RecyclerView)findViewById(R.id.recycler);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        arrayList= universityCAD.selectUniversity();
+        adapter=new UniversityAdapter(arrayList,getApplicationContext());
+        recyclerView.setAdapter(adapter);
 
     }
 
@@ -38,7 +46,11 @@ public class MainActivity extends Activity implements SearchView.OnQueryTextList
 
     @Override
     public boolean onQueryTextChange(String newText) {
-        Toast.makeText(getApplicationContext(),newText,Toast.LENGTH_SHORT).show();
+        arrayList.clear();
+        arrayList= universityCAD.searchUniversity(newText);
+        adapter=new UniversityAdapter(arrayList,getApplicationContext());
+        recyclerView.setAdapter(adapter);
+        //Toast.makeText(getApplicationContext(),newText,Toast.LENGTH_SHORT).show();
         return false;
     }
 
@@ -70,5 +82,10 @@ public class MainActivity extends Activity implements SearchView.OnQueryTextList
         }
 		return super.onOptionsItemSelected(item);
 	}
-	
+	private void testInsert(){
+            universityCAD.insertDepartment(new Department(2,"Antioquia"));
+        for (int i=0;i<10;i++){
+            universityCAD.insertUniversity(new University(i,"Universidad de Antioquia "+i,"this information not is reality"+i,"udea.com"+i,"logo.png","2"));
+        }
+    }
 }

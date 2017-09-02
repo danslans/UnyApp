@@ -3,5 +3,6 @@
 
     <string name="app_name">UnyApp</string>
     <string name="hello_world">Hello world!</string>
-
+    <string name="search">Search</string>
+    <string name="item">Item Prueba</string>
 </resources>

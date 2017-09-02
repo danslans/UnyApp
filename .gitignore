@@ -1,0 +1,5 @@
+UnyApp/app/build/*
+UnyApp/build/**
+UnyApp/.gradle/*
+UnyApp/.idea/*
+*.class

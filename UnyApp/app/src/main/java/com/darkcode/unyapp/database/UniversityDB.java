@@ -31,10 +31,10 @@ public class UniversityDB extends SQLiteOpenHelper {
 
     }
   public  class StructureDB implements BaseColumns{
-        private static final String TYPE_TEXT =" TEXT ";
-        private static final String TYPE_INTEGER =" INTEGER ";
-        private static final String PRYMARY = " PRIMARY KEY ";
-        private static final String COMA = ",";
+        private static final String TYPE_TEXT =" TEXT";
+        private static final String TYPE_INTEGER =" INTEGER";
+        private static final String PRYMARY = "PRIMARY KEY";
+        private static final String COMA = ", ";
 
         public static final String NAME_TABLE_DEPARTMENTS =" DEPARTMENTS";
         public static final String CREATE_TABLE_DEPARTMENTS = "CREATE TABLE"+NAME_TABLE_DEPARTMENTS+"(" +
@@ -42,7 +42,7 @@ public class UniversityDB extends SQLiteOpenHelper {
                 StructureDB.COLUMN_NAME+TYPE_TEXT+
                 ")";
 
-        public static final String NAME_TABLE_UNIVERSITIES =" UNIVERSITIES";
+        public static final String NAME_TABLE_UNIVERSITIES =" UNIVERSITIES ";
         public static final String COLUMN_NAME ="NAME ";
         public static final String COLUMN_INFO="INFORMATION ";
         public static final String COLUMN_URL="URL ";
@@ -54,7 +54,7 @@ public class UniversityDB extends SQLiteOpenHelper {
                 COLUMN_INFO+TYPE_TEXT+COMA+
                 COLUMN_URL+TYPE_TEXT+COMA+
                 COLUMN_LOGO+TYPE_TEXT+COMA+
-                COLUMN_DEPARTMENT+TYPE_INTEGER+" FOREIGN KEY ("+COLUMN_DEPARTMENT+") REFERENCES "+NAME_TABLE_DEPARTMENTS+"("+StructureDB._ID+") "+
+                COLUMN_DEPARTMENT+TYPE_INTEGER+
                 ")" ;
 
 
