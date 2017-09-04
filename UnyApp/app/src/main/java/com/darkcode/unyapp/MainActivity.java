@@ -28,7 +28,8 @@ public class MainActivity extends Activity implements SearchView.OnQueryTextList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         universityCAD= new UniversityCAD(getApplicationContext());
-        testInsert();
+        //testInsert();
+		Toast.makeText(getApplicationContext(),synchronizedCloud(),Toast.LENGTH_SHORT).show();
         recyclerView=(RecyclerView)findViewById(R.id.recycler);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
@@ -88,4 +89,7 @@ public class MainActivity extends Activity implements SearchView.OnQueryTextList
             universityCAD.insertUniversity(new University(i,"Universidad de Antioquia "+i,"this information not is reality"+i,"udea.com"+i,"logo.png","2"));
         }
     }
+	private String synchronizedCloud(){
+		return universityCAD.insertSycCloud();
+	}
 }

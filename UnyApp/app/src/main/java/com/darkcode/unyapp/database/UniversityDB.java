@@ -32,7 +32,7 @@ public class UniversityDB extends SQLiteOpenHelper {
     }
   public  class StructureDB implements BaseColumns{
         private static final String TYPE_TEXT =" TEXT";
-        private static final String TYPE_INTEGER =" INTEGER";
+        private static final String TYPE_INTEGER =" INTEGER ";
         private static final String PRYMARY = "PRIMARY KEY";
         private static final String COMA = ", ";
 
@@ -43,19 +43,20 @@ public class UniversityDB extends SQLiteOpenHelper {
                 ")";
 
         public static final String NAME_TABLE_UNIVERSITIES =" UNIVERSITIES ";
+		public static final String COLUMN_ID="ID";
         public static final String COLUMN_NAME ="NAME ";
         public static final String COLUMN_INFO="INFORMATION ";
         public static final String COLUMN_URL="URL ";
         public static final String COLUMN_LOGO="LOGO ";
         public static final String COLUMN_DEPARTMENT="DEPARTMENT ";
         public static final String CREATE_TABLE_UNIVERSITIES = "CREATE TABLE "+ NAME_TABLE_UNIVERSITIES +"(" +
-                StructureDB._ID+TYPE_INTEGER+PRYMARY+COMA+
+                StructureDB.COLUMN_ID+TYPE_INTEGER+PRYMARY+COMA+
                 COLUMN_NAME+TYPE_TEXT+COMA+
                 COLUMN_INFO+TYPE_TEXT+COMA+
                 COLUMN_URL+TYPE_TEXT+COMA+
                 COLUMN_LOGO+TYPE_TEXT+COMA+
                 COLUMN_DEPARTMENT+TYPE_INTEGER+
-                ")" ;
+		") WITHOUT ROWID" ;
 
 
 

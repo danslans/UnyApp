@@ -10,6 +10,10 @@ import com.darkcode.unyapp.model.Department;
 import com.darkcode.unyapp.model.University;
 
 import java.util.ArrayList;
+import com.android.volley.*;
+import com.android.volley.toolbox.*;
+import org.json.*;
+import android.widget.*;
 
 /**
  * Created by daniel.gomez on 01/09/2017.
@@ -21,6 +25,8 @@ public class UniversityCAD {
     private SQLiteDatabase sqLiteDatabase;
     private ContentValues values;
     private Cursor cursor;
+	private RequestQueue request;
+	private String msn=",";
 
     public UniversityCAD(Context context) {
         this.context = context;
@@ -28,12 +34,14 @@ public class UniversityCAD {
     }
     private void connectDB(){
         db=UniversityDB.getConnection(context);
+		request=Volley.newRequestQueue(context);
+		
     }
     public ArrayList<University> selectUniversity(){
         ArrayList<University> universities=new ArrayList<>();
         sqLiteDatabase=db.getReadableDatabase();
         String[] columns={
-                UniversityDB.StructureDB._ID,
+                UniversityDB.StructureDB.COLUMN_ID,
                 UniversityDB.StructureDB.COLUMN_NAME,
                 UniversityDB.StructureDB.COLUMN_INFO,
                 UniversityDB.StructureDB.COLUMN_URL,
@@ -48,7 +56,7 @@ public class UniversityCAD {
     public int insertUniversity(University university){
         sqLiteDatabase=db.getWritableDatabase();
         values=new ContentValues();
-                values.put(UniversityDB.StructureDB._ID,university.getId());
+                values.put(UniversityDB.StructureDB.COLUMN_ID,university.getId());
                 values.put(UniversityDB.StructureDB.COLUMN_NAME,university.getName());
                 values.put(UniversityDB.StructureDB.COLUMN_INFO,university.getInformation());
                 values.put(UniversityDB.StructureDB.COLUMN_URL,university.getUrl());
@@ -67,7 +75,7 @@ public class UniversityCAD {
         ArrayList<University> universities =new ArrayList<>() ;
         sqLiteDatabase=db.getReadableDatabase();
         String[] columns={
-                UniversityDB.StructureDB._ID,
+                UniversityDB.StructureDB.COLUMN_ID,
                 UniversityDB.StructureDB.COLUMN_NAME,
                 UniversityDB.StructureDB.COLUMN_INFO,
                 UniversityDB.StructureDB.COLUMN_URL,
@@ -79,4 +87,34 @@ public class UniversityCAD {
         }
         return universities;
     }
+	public String insertSycCloud(){
+		
+		JsonArrayRequest jsonArrayRequest= new JsonArrayRequest("http://localhost:8080/UnyApp/UniversityCAD.php",new Response.Listener<JSONArray>(){
+			public void onResponse(JSONArray json){
+				for (int i=0;i<json.length();i++){
+					try{
+					JSONObject obj=json.getJSONObject(i);
+						JSONObject objU=(JSONObject) obj.get("Antioquia");
+						//insertUniversity(new University(objU.getInt("id"),objU.getString("name"),objU.getString("information"),objU.getString("url"),objU.getString("logo"),"1"));
+						System.out.println("hola mundo");
+					}catch(JSONException e){
+						msn+=e;
+					}
+				}
+			}
+		},new Response.ErrorListener(){
+			public void onErrorResponse(VolleyError e){
+				msn+=e;
+			}
+		});
+		request.add(jsonArrayRequest);
+		return msn;
+	}
+	
+	private int selectUniversityId(int id){
+		sqLiteDatabase=db.getReadableDatabase();
+		String[] column={UniversityDB.StructureDB.COLUMN_ID};
+		cursor=sqLiteDatabase.query(UniversityDB.StructureDB.NAME_TABLE_UNIVERSITIES,column,UniversityDB.StructureDB.COLUMN_ID+" = "+id,null,null,null,null);
+		return cursor.getCount();
+	}
 }
