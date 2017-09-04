@@ -95,8 +95,8 @@ public class UniversityCAD {
 					try{
 					JSONObject obj=json.getJSONObject(i);
 						JSONObject objU=(JSONObject) obj.get("Antioquia");
-						//insertUniversity(new University(objU.getInt("id"),objU.getString("name"),objU.getString("information"),objU.getString("url"),objU.getString("logo"),"1"));
-						System.out.println("hola mundo");
+						insertUniversity(new University(objU.getInt("id"),objU.getString("name"),objU.getString("information"),objU.getString("url"),objU.getString("logo"),"1"));
+						//System.out.println("hola mundo");
 					}catch(JSONException e){
 						msn+=e;
 					}
