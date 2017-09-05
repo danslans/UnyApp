@@ -90,6 +90,6 @@ public class MainActivity extends Activity implements SearchView.OnQueryTextList
         }
     }
 	private String synchronizedCloud(){
-		return universityCAD.insertSycCloud();
+		return universityCAD.downloadDBCloud();
 	}
 }

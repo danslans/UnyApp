@@ -27,6 +27,7 @@ public class UniversityCAD {
     private Cursor cursor;
 	private RequestQueue request;
 	private String msn=",";
+	private int[] states;
 
     public UniversityCAD(Context context) {
         this.context = context;
@@ -87,15 +88,16 @@ public class UniversityCAD {
         }
         return universities;
     }
-	public String insertSycCloud(){
+	public String downloadDBCloud(){
 		
 		JsonArrayRequest jsonArrayRequest= new JsonArrayRequest("http://localhost:8080/UnyApp/UniversityCAD.php",new Response.Listener<JSONArray>(){
 			public void onResponse(JSONArray json){
+				states=new int[json.length()];
 				for (int i=0;i<json.length();i++){
 					try{
 					JSONObject obj=json.getJSONObject(i);
 						JSONObject objU=(JSONObject) obj.get("Antioquia");
-						insertUniversity(new University(objU.getInt("id"),objU.getString("name"),objU.getString("information"),objU.getString("url"),objU.getString("logo"),"1"));
+						states[i]=insertUniversity(new University(objU.getInt("id"),objU.getString("name"),objU.getString("information"),objU.getString("url"),objU.getString("logo"),"1"));
 						//System.out.println("hola mundo");
 					}catch(JSONException e){
 						msn+=e;
@@ -115,6 +117,15 @@ public class UniversityCAD {
 		sqLiteDatabase=db.getReadableDatabase();
 		String[] column={UniversityDB.StructureDB.COLUMN_ID};
 		cursor=sqLiteDatabase.query(UniversityDB.StructureDB.NAME_TABLE_UNIVERSITIES,column,UniversityDB.StructureDB.COLUMN_ID+" = "+id,null,null,null,null);
+		Toast.makeText(context,""+cursor.getCount(),Toast.LENGTH_LONG).show();
 		return cursor.getCount();
+	}
+	private void validateStateDb(){
+		boolean resultState=false;
+		for(int i: states){
+			if (i>=1){
+				resultState=true;
+			}
+		}
 	}
 }
