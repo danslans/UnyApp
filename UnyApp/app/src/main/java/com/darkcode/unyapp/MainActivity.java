@@ -27,7 +27,7 @@ public class MainActivity extends Activity implements SearchView.OnQueryTextList
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-        universityCAD= new UniversityCAD(getApplicationContext());
+        universityCAD= new UniversityCAD(MainActivity.this);
         //testInsert();
 		Toast.makeText(getApplicationContext(),synchronizedCloud(),Toast.LENGTH_SHORT).show();
         recyclerView=(RecyclerView)findViewById(R.id.recycler);

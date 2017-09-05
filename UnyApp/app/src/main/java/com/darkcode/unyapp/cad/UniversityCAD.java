@@ -1,5 +1,6 @@
 package com.darkcode.unyapp.cad;
 
+import android.app.ProgressDialog;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -28,6 +29,7 @@ public class UniversityCAD {
 	private RequestQueue request;
 	private String msn=",";
 	private int[] states;
+    private ProgressDialog progressDialog;
 
     public UniversityCAD(Context context) {
         this.context = context;
@@ -89,16 +91,22 @@ public class UniversityCAD {
         return universities;
     }
 	public String downloadDBCloud(){
-		
+        progressDialog  =new ProgressDialog(context);
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        progressDialog.setTitle("Download...");
+        progressDialog.setIndeterminate(true);
+        progressDialog.show();
 		JsonArrayRequest jsonArrayRequest= new JsonArrayRequest("http://localhost:8080/UnyApp/UniversityCAD.php",new Response.Listener<JSONArray>(){
 			public void onResponse(JSONArray json){
 				states=new int[json.length()];
+                progressDialog.setMax(json.length());
 				for (int i=0;i<json.length();i++){
 					try{
 					JSONObject obj=json.getJSONObject(i);
 						JSONObject objU=(JSONObject) obj.get("Antioquia");
 						states[i]=insertUniversity(new University(objU.getInt("id"),objU.getString("name"),objU.getString("information"),objU.getString("url"),objU.getString("logo"),"1"));
-						//System.out.println("hola mundo");
+                        progressDialog.setProgress(i);
+						System.out.println("ya entro "+i);
 					}catch(JSONException e){
 						msn+=e;
 					}
