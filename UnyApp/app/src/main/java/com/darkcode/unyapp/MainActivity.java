@@ -22,6 +22,7 @@ public class MainActivity extends Activity implements SearchView.OnQueryTextList
     private UniversityAdapter adapter;
     private ArrayList<University> arrayList =new ArrayList<>();
     private UniversityCAD universityCAD;
+    private ProgressDialog progressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -29,7 +30,7 @@ public class MainActivity extends Activity implements SearchView.OnQueryTextList
         setContentView(R.layout.main);
         universityCAD= new UniversityCAD(MainActivity.this);
         //testInsert();
-		Toast.makeText(getApplicationContext(),synchronizedCloud(),Toast.LENGTH_SHORT).show();
+		synchronizedCloud();
         recyclerView=(RecyclerView)findViewById(R.id.recycler);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
@@ -92,4 +93,8 @@ public class MainActivity extends Activity implements SearchView.OnQueryTextList
 	private String synchronizedCloud(){
 		return universityCAD.downloadDBCloud();
 	}
+
+	private void validateDownloadDb(){
+
+    }
 }
