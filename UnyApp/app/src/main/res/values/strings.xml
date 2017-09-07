@@ -5,4 +5,5 @@
     <string name="hello_world">Hello world!</string>
     <string name="search">Search</string>
     <string name="item">Item Prueba</string>
+    <string name="download">Download</string>
 </resources>

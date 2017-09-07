@@ -24,6 +24,7 @@ public class MainActivity extends Activity implements SearchView.OnQueryTextList
     private UniversityAdapter adapter;
     private ArrayList<University> arrayList =new ArrayList<>();
     private UniversityCAD universityCAD;
+    private DialogRes dialogRes;
     
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -31,9 +32,10 @@ public class MainActivity extends Activity implements SearchView.OnQueryTextList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         universityCAD= new UniversityCAD(MainActivity.this);
-		new DialogRes().show(getFragmentManager(),null);
+        loadDialog();
         //testInsert();
-		//synchronizedCloud();
+		synchronizedCloud();
+        dialogRes.dismiss();
         recyclerView=(RecyclerView)findViewById(R.id.recycler);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
@@ -42,7 +44,11 @@ public class MainActivity extends Activity implements SearchView.OnQueryTextList
         recyclerView.setAdapter(adapter);
 
     }
-
+    private void loadDialog(){
+        dialogRes= new DialogRes();
+        dialogRes.setTitle(String.valueOf(R.string.download));
+        dialogRes.show(getFragmentManager(),null);
+    }
     @Override
     public boolean onQueryTextSubmit(String query) {
         Toast.makeText(getApplicationContext(),query,Toast.LENGTH_SHORT).show();
