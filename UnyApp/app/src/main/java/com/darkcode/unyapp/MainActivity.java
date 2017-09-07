@@ -15,6 +15,8 @@ import com.darkcode.unyapp.model.Department;
 import com.darkcode.unyapp.model.University;
 
 import java.util.ArrayList;
+import android.widget.*;
+import com.darkcode.unyapp.resource.*;
 
 public class MainActivity extends Activity implements SearchView.OnQueryTextListener
 {
@@ -22,15 +24,16 @@ public class MainActivity extends Activity implements SearchView.OnQueryTextList
     private UniversityAdapter adapter;
     private ArrayList<University> arrayList =new ArrayList<>();
     private UniversityCAD universityCAD;
-    private ProgressDialog progressDialog;
+    
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         universityCAD= new UniversityCAD(MainActivity.this);
+		new DialogRes().show(getFragmentManager(),null);
         //testInsert();
-		synchronizedCloud();
+		//synchronizedCloud();
         recyclerView=(RecyclerView)findViewById(R.id.recycler);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
