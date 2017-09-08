@@ -163,6 +163,7 @@ containing a value of this type.
     }
     public static final class string {
         public static final int app_name=0x7f080000;
+        public static final int download=0x7f080004;
         public static final int hello_world=0x7f080001;
         public static final int item=0x7f080003;
         public static final int search=0x7f080002;

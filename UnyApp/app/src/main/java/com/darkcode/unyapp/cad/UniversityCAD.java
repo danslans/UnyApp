@@ -15,6 +15,7 @@ import com.android.volley.*;
 import com.android.volley.toolbox.*;
 import org.json.*;
 import android.widget.*;
+import com.darkcode.unyapp.resource.*;
 
 /**
  * Created by daniel.gomez on 01/09/2017.
@@ -29,16 +30,17 @@ public class UniversityCAD {
 	private RequestQueue request;
 	private String msn=",";
 	private int[] states;
+	private Utils util;
 
 
     public UniversityCAD(Context context) {
         this.context = context;
-        connectDB();
+        instanceAll();
     }
-    private void connectDB(){
+    private void instanceAll(){
         db=UniversityDB.getConnection(context);
 		request=Volley.newRequestQueue(context);
-		
+		util=new Utils(context);
     }
     public ArrayList<University> selectUniversity(){
         ArrayList<University> universities=new ArrayList<>();

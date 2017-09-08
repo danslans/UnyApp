@@ -17,6 +17,7 @@ import com.darkcode.unyapp.model.University;
 import java.util.ArrayList;
 import android.widget.*;
 import com.darkcode.unyapp.resource.*;
+import android.content.res.*;
 
 public class MainActivity extends Activity implements SearchView.OnQueryTextListener
 {
@@ -35,7 +36,7 @@ public class MainActivity extends Activity implements SearchView.OnQueryTextList
         loadDialog();
         //testInsert();
 		synchronizedCloud();
-        dialogRes.dismiss();
+        
         recyclerView=(RecyclerView)findViewById(R.id.recycler);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
@@ -46,7 +47,7 @@ public class MainActivity extends Activity implements SearchView.OnQueryTextList
     }
     private void loadDialog(){
         dialogRes= new DialogRes();
-        dialogRes.setTitle(String.valueOf(R.string.download));
+        dialogRes.setTitle("Download");
         dialogRes.show(getFragmentManager(),null);
     }
     @Override
