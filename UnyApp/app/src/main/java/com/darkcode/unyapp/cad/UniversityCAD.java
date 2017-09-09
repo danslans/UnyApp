@@ -105,6 +105,7 @@ public class UniversityCAD {
 						msn+=e;
 					}
 				}
+				validateStateDb();
 			}
 		},new Response.ErrorListener(){
 			public void onErrorResponse(VolleyError e){
@@ -112,6 +113,7 @@ public class UniversityCAD {
 			}
 		});
 		request.add(jsonArrayRequest);
+
 		return msn;
 	}
 	
@@ -123,15 +125,15 @@ public class UniversityCAD {
 		return cursor.getCount();
 	}
 	private void validateStateDb(){
-		String
+        boolean validateState=false;
 		for(int i: states){
 			if (i>=1){
-				util.savePreference(new String,"VALIDATIONDB");	
+                validateState=true;
 			}else{
-				false;
+                validateState=false;
 				break;
 			}
 		}
-		
+		util.savePreferenceBoolean("statusDB",validateState,"StateDB");
 	}
 }
