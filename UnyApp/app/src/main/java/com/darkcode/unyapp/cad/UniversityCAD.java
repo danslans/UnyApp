@@ -123,11 +123,15 @@ public class UniversityCAD {
 		return cursor.getCount();
 	}
 	private void validateStateDb(){
-		boolean resultState=false;
+		String
 		for(int i: states){
 			if (i>=1){
-				resultState=true;
+				util.savePreference(new String,"VALIDATIONDB");	
+			}else{
+				false;
+				break;
 			}
 		}
+		
 	}
 }
