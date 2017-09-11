@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import android.widget.*;
 import com.darkcode.unyapp.resource.*;
 import android.content.res.*;
+import android.content.*;
 
 public class MainActivity extends Activity implements SearchView.OnQueryTextListener
 {
@@ -33,10 +34,8 @@ public class MainActivity extends Activity implements SearchView.OnQueryTextList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         universityCAD= new UniversityCAD(MainActivity.this);
-        loadDialog();
-        //testInsert();
-		synchronizedCloud();
-        
+        validateDownloadDb();
+		//testInsert();
         recyclerView=(RecyclerView)findViewById(R.id.recycler);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
@@ -105,6 +104,15 @@ public class MainActivity extends Activity implements SearchView.OnQueryTextList
 	}
 
 	private void validateDownloadDb(){
-
+		
+		SharedPreferences preference=getSharedPreferences(Utils.NAME_SHARED[0],Context.MODE_PRIVATE);
+		Toast.makeText(getApplicationContext(),preference.getString("statusDB",""),Toast.LENGTH_SHORT).show();
+		if(!Boolean.parseBoolean(preference.getString("statusDB",""))){
+			loadDialog();
+			synchronizedCloud();
+		}else{
+			Toast.makeText(getApplicationContext(),"Discharged",Toast.LENGTH_SHORT).show();
+        }
     }
+	
 }

@@ -4,6 +4,7 @@ import java.util.*;
 
 public class Utils
 {
+	public static final String[] NAME_SHARED={"StateDB"};
 	private SharedPreferences preference;
 	private Context context;
 
@@ -12,10 +13,10 @@ public class Utils
 		this.context = context;
 	}
 	
-	public boolean savePreferenceString(String[][] data,String nameShared){
+	public boolean savePreferenceString(String key,String value,String nameShared){
 		preference=context.getSharedPreferences(nameShared,context.MODE_PRIVATE);
 		SharedPreferences.Editor edit=preference.edit();
-		edit.putString(data[0][0],data[0][1]);
+		edit.putString(key,value);
 		return edit.commit();
 	}
 

@@ -134,6 +134,6 @@ public class UniversityCAD {
 				break;
 			}
 		}
-		util.savePreferenceBoolean("statusDB",validateState,"StateDB");
+		util.savePreferenceString("statusDB",String.valueOf(validateState),"StateDB");
 	}
 }
