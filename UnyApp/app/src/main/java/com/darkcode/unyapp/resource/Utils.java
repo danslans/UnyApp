@@ -12,7 +12,7 @@ public class Utils
 	{
 		this.context = context;
 	}
-	
+
 	public boolean savePreferenceString(String key,String value,String nameShared){
 		preference=context.getSharedPreferences(nameShared,context.MODE_PRIVATE);
 		SharedPreferences.Editor edit=preference.edit();
@@ -26,13 +26,12 @@ public class Utils
         edit.putBoolean(key, value);
         return edit.commit();
     }
-	
-	public ArrayList<String> searchPreference(String nameShared,String[] key){
-		ArrayList<String> list=new ArrayList<>();
+
+	public String searchPreference(String nameShared,String key){
 		preference=context.getSharedPreferences(nameShared,context.MODE_PRIVATE);
-		for(String i:key){
-			list.add(preference.getString(i,""));
-		}
-		return list;
+		return preference.getString(key,"");
+	}
+	public static boolean validateStringToBoolean(String key){
+		return Boolean.parseBoolean(key);
 	}
 }

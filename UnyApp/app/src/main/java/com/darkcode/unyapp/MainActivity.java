@@ -3,9 +3,9 @@ package com.darkcode.unyapp;
 import android.app.*;
 import android.content.Context;
 import android.os.*;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.widget.SearchView;
 import android.view.*;
 import android.widget.Toast;
 
@@ -15,12 +15,10 @@ import com.darkcode.unyapp.model.Department;
 import com.darkcode.unyapp.model.University;
 
 import java.util.ArrayList;
-import android.widget.*;
 import com.darkcode.unyapp.resource.*;
-import android.content.res.*;
 import android.content.*;
 
-public class MainActivity extends Activity implements SearchView.OnQueryTextListener
+public class MainActivity extends AppCompatActivity implements android.support.v7.widget.SearchView.OnQueryTextListener
 {
     private RecyclerView recyclerView;
     private UniversityAdapter adapter;
@@ -71,10 +69,10 @@ public class MainActivity extends Activity implements SearchView.OnQueryTextList
 		// TODO: Implement this method
 		getMenuInflater().inflate(R.menu.menu,menu);
         MenuItem search = menu.findItem(R.id.search);
-        SearchManager searchManager = (SearchManager) MainActivity.this.getSystemService(Context.SEARCH_SERVICE);
-        SearchView  searchView =null;
+       SearchManager searchManager = (SearchManager) MainActivity.this.getSystemService(Context.SEARCH_SERVICE);
+        android.support.v7.widget.SearchView searchView =null;
         if(search !=null){
-            searchView =(SearchView) search.getActionView();
+            searchView =(android.support.v7.widget.SearchView) search.getActionView();
             searchView.setOnQueryTextListener(this);
         }
         if(searchView != null){
@@ -104,10 +102,10 @@ public class MainActivity extends Activity implements SearchView.OnQueryTextList
 	}
 
 	private void validateDownloadDb(){
-		
+		//new UnyThread(MainActivity.this).start();
 		SharedPreferences preference=getSharedPreferences(Utils.NAME_SHARED[0],Context.MODE_PRIVATE);
 		Toast.makeText(getApplicationContext(),preference.getString("statusDB",""),Toast.LENGTH_SHORT).show();
-		if(!Boolean.parseBoolean(preference.getString("statusDB",""))){
+		if(!Utils.validateStringToBoolean(preference.getString("statusDB",""))){
 			loadDialog();
 			synchronizedCloud();
 		}else{
