@@ -2,6 +2,7 @@ package com.darkcode.unyapp;
 
 import android.app.*;
 import android.content.Context;
+import android.net.ConnectivityManager;
 import android.os.*;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -32,10 +33,10 @@ public class MainActivity extends Activity implements SearchView.OnQueryTextList
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+        getActionBar().setDisplayHomeAsUpEnabled(true);
         universityCAD= new UniversityCAD(MainActivity.this);
 		util=new Utils(MainActivity.this);
         validateDownloadDb();
-
 		//testInsert();
         recyclerView=(RecyclerView)findViewById(R.id.recycler);
         recyclerView.setHasFixedSize(true);
@@ -43,7 +44,7 @@ public class MainActivity extends Activity implements SearchView.OnQueryTextList
         arrayList= universityCAD.selectUniversity();
         adapter=new UniversityAdapter(arrayList,getApplicationContext());
         recyclerView.setAdapter(adapter);
-
+        
     }
     private void loadDialog(){
         dialogRes= new DialogRes();

@@ -1,6 +1,7 @@
 package com.darkcode.unyapp.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.darkcode.unyapp.InformationUny;
 import com.darkcode.unyapp.R;
 import com.darkcode.unyapp.model.University;
 
@@ -47,8 +49,9 @@ public class UniversityAdapter extends RecyclerView.Adapter<UniversityAdapter.Ho
 		holder.cardView.setOnClickListener(new View.OnClickListener(){
 			@Override
 			public void onClick(View v){
-				
-				Toast.makeText(context,arrayList.get(position).getName(),Toast.LENGTH_SHORT).show();
+                Intent intent=new Intent(context, InformationUny.class);
+                intent.putExtra("idUny",arrayList.get(position).getId());
+                context.startActivity(intent);
 			}
 		});
     }
