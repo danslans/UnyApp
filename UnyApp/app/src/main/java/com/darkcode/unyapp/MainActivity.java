@@ -27,6 +27,8 @@ public class MainActivity extends Activity implements SearchView.OnQueryTextList
     private ArrayList<University> arrayList =new ArrayList<>();
     private UniversityCAD universityCAD;
     private DialogRes dialogRes;
+	private UnyThread unyThread;
+	private Utils util;
     
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -34,6 +36,7 @@ public class MainActivity extends Activity implements SearchView.OnQueryTextList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         universityCAD= new UniversityCAD(MainActivity.this);
+		util=new Utils(MainActivity.this);
         validateDownloadDb();
 		//testInsert();
         recyclerView=(RecyclerView)findViewById(R.id.recycler);
@@ -105,14 +108,19 @@ public class MainActivity extends Activity implements SearchView.OnQueryTextList
 
 	private void validateDownloadDb(){
 		//new UnyThread(MainActivity.this).start();
-		SharedPreferences preference=getSharedPreferences(Utils.NAME_SHARED[0],Context.MODE_PRIVATE);
-		Toast.makeText(getApplicationContext(),preference.getString("statusDB",""),Toast.LENGTH_SHORT).show();
-		if(!Utils.validateStringToBoolean(preference.getString("statusDB",""))){
+		String resultShared=util.searchPreference(Utils.NAME_SHARED[0],Utils.NAME_SHARED[1]);
+		Toast.makeText(getApplicationContext(),resultShared,Toast.LENGTH_SHORT).show();
+		if(!Utils.validateStringToBoolean(resultShared)){
 			loadDialog();
 			synchronizedCloud();
+			validatePreferenceDB();
 		}else{
 			Toast.makeText(getApplicationContext(),"Discharged",Toast.LENGTH_SHORT).show();
         }
     }
-	
+	private void validatePreferenceDB(){
+		unyThread= new UnyThread(MainActivity.this);
+		unyThread.setDialog(dialogRes);
+		unyThread.start();
+	}
 }

@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Utils
 {
-	public static final String[] NAME_SHARED={"StateDB"};
+	public static final String[] NAME_SHARED={"StateDB","valueDB"};
 	private SharedPreferences preference;
 	private Context context;
 
