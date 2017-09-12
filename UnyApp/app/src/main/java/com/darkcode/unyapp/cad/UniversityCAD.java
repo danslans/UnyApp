@@ -134,6 +134,6 @@ public class UniversityCAD {
 				break;
 			}
 		}
-		util.savePreferenceString(Utils.NAME_SHARED[0],String.valueOf(validateState),Utils.NAME_SHARED[1]);
+		util.savePreferenceString(Utils.NAME_SHARED[1],String.valueOf(validateState),Utils.NAME_SHARED[0]);
 	}
 }
