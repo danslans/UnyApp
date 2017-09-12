@@ -27,7 +27,7 @@ public class UnyThread extends Thread{
 		boolean stateDb=Utils.validateStringToBoolean(utils.searchPreference(Utils.NAME_SHARED[0],Utils.NAME_SHARED[1]));
 		while (!stateDb){
 			stateDb=Utils.validateStringToBoolean(utils.searchPreference(Utils.NAME_SHARED[0],Utils.NAME_SHARED[1]));
-			System.out.println(""+stateDb);
+			//System.out.println(""+stateDb);
 		}
 		 if(stateDb){
 			 dialog.dismiss();

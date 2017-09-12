@@ -8,17 +8,14 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.SearchView;
 import android.view.*;
 import android.widget.Toast;
-
 import com.darkcode.unyapp.adapters.UniversityAdapter;
 import com.darkcode.unyapp.cad.UniversityCAD;
 import com.darkcode.unyapp.model.Department;
 import com.darkcode.unyapp.model.University;
 
 import java.util.ArrayList;
-import android.widget.*;
 import com.darkcode.unyapp.resource.*;
-import android.content.res.*;
-import android.content.*;
+
 
 public class MainActivity extends Activity implements SearchView.OnQueryTextListener
 {
@@ -38,6 +35,7 @@ public class MainActivity extends Activity implements SearchView.OnQueryTextList
         universityCAD= new UniversityCAD(MainActivity.this);
 		util=new Utils(MainActivity.this);
         validateDownloadDb();
+
 		//testInsert();
         recyclerView=(RecyclerView)findViewById(R.id.recycler);
         recyclerView.setHasFixedSize(true);
