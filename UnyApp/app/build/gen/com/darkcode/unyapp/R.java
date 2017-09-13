@@ -134,6 +134,15 @@ containing a value of this type.
         public static final int cardview_light_background=0x7f050001;
         public static final int cardview_shadow_end_color=0x7f050002;
         public static final int cardview_shadow_start_color=0x7f050003;
+        public static final int colorAccent=0x7f050006;
+        /**  <color name="colorPrimary">#E91E63</color>
+    <color name="colorPrimaryDark">#880E4F</color>
+    <color name="colorAccent">#F8BBD0</color>
+    <color name="colorTitle">#FCE4EC</color>
+         */
+        public static final int colorPrimary=0x7f050004;
+        public static final int colorPrimaryDark=0x7f050005;
+        public static final int colorTitle=0x7f050007;
     }
     public static final class dimen {
         public static final int cardview_compat_inset_shadow=0x7f060000;
@@ -144,19 +153,22 @@ containing a value of this type.
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int cardUny=0x7f0a0000;
-        public static final int imgUny=0x7f0a0001;
-        public static final int item1=0x7f0a0007;
-        public static final int recycler=0x7f0a0005;
-        public static final int search=0x7f0a0006;
-        public static final int txtIdUny=0x7f0a0004;
-        public static final int txtInfoUny=0x7f0a0003;
-        public static final int txtNameUny=0x7f0a0002;
+        public static final int activity_information_unyImageButton=0x7f0a0001;
+        public static final int cardInformation=0x7f0a0000;
+        public static final int cardUny=0x7f0a0002;
+        public static final int imgUny=0x7f0a0003;
+        public static final int item1=0x7f0a0009;
+        public static final int recycler=0x7f0a0007;
+        public static final int search=0x7f0a0008;
+        public static final int txtIdUny=0x7f0a0006;
+        public static final int txtInfoUny=0x7f0a0005;
+        public static final int txtNameUny=0x7f0a0004;
     }
     public static final class layout {
-        public static final int card_uny_adapter=0x7f030000;
-        public static final int dialog_res=0x7f030001;
-        public static final int main=0x7f030002;
+        public static final int activity_information_uny=0x7f030000;
+        public static final int card_uny_adapter=0x7f030001;
+        public static final int dialog_res=0x7f030002;
+        public static final int main=0x7f030003;
     }
     public static final class menu {
         public static final int menu=0x7f090000;
@@ -167,6 +179,7 @@ containing a value of this type.
         public static final int hello_world=0x7f080001;
         public static final int item=0x7f080003;
         public static final int search=0x7f080002;
+        public static final int title_activity_information_uny=0x7f080005;
     }
     public static final class style {
         public static final int AppTheme=0x7f070003;

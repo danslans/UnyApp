@@ -129,6 +129,8 @@ public class UniversityCAD {
 		for(int i: states){
 			if (i>=1){
                 validateState=true;
+			}else if(i==-1){
+				validateState=true;
 			}else{
                 validateState=false;
 				break;

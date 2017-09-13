@@ -23,5 +23,6 @@
     <item
         android:id="@+id/item1"
         android:title="@string/item"
+		android:textColor="#000000"
         ></item>
 </menu>
