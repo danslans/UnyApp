@@ -2,12 +2,12 @@ package com.darkcode.unyapp;
 
 import android.app.*;
 import android.content.Context;
-import android.net.ConnectivityManager;
 import android.os.*;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.SearchView;
 import android.view.*;
+import android.widget.TabHost;
 import android.widget.Toast;
 import com.darkcode.unyapp.adapters.UniversityAdapter;
 import com.darkcode.unyapp.cad.UniversityCAD;
@@ -27,6 +27,8 @@ public class MainActivity extends Activity implements SearchView.OnQueryTextList
     private DialogRes dialogRes;
 	private UnyThread unyThread;
 	private Utils util;
+
+
     
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -34,8 +36,10 @@ public class MainActivity extends Activity implements SearchView.OnQueryTextList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         getActionBar().setDisplayHomeAsUpEnabled(true);
+
         universityCAD= new UniversityCAD(MainActivity.this);
 		util=new Utils(MainActivity.this);
+
         validateDownloadDb();
 		//testInsert();
         recyclerView=(RecyclerView)findViewById(R.id.recycler);
