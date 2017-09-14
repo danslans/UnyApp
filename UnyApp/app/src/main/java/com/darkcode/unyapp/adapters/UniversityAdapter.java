@@ -47,16 +47,8 @@ public class UniversityAdapter extends RecyclerView.Adapter<UniversityAdapter.Ho
         holder.information.setText(arrayList.get(position).getInformation());
         holder.name.setText(arrayList.get(position).getName());
 		holder.id.setText(String.valueOf( arrayList.get(position).getId()));
-        loadTabs(holder.tabHost);
-        /**Animacion **/
-        int red = 0xFFD50000;
-        int blue= 0xFF64DD17;
-        valueAnimator= ObjectAnimator.ofInt(holder.imgUny,"backgroundColor",red,blue);
-        valueAnimator.setDuration(3000);
-        valueAnimator.setEvaluator(new ArgbEvaluator());
-        valueAnimator.setRepeatCount(ValueAnimator.INFINITE);
-        valueAnimator.setRepeatMode(ValueAnimator.REVERSE);
-        valueAnimator.start();
+      //  loadTabs(holder.tabHost)
+        addAnimation(holder.cardView,0xFF9C27B0,0xFF00BCD4);
          /****/
 
 		//a=AnimationUtils.loadAnimation(context,R.anim.card_anim);
@@ -69,22 +61,31 @@ public class UniversityAdapter extends RecyclerView.Adapter<UniversityAdapter.Ho
 			}
 		});
     }
+	private void addAnimation(Object holder,int c1,int c2){
+		/**Animacion **/
+        valueAnimator= ObjectAnimator.ofInt(holder,"backgroundColor",c1,c2);
+        valueAnimator.setDuration(4000);
+        valueAnimator.setEvaluator(new ArgbEvaluator());
+        valueAnimator.setRepeatCount(ValueAnimator.INFINITE);
+        valueAnimator.setRepeatMode(ValueAnimator.REVERSE);
+        valueAnimator.start();
+	}
 
-    private void loadTabs(TabHost tabHost){
+   /* private void loadTabs(TabHost tabHost){
 
         tabHost.setup();
         tabHost.setBackgroundColor(Color.BLUE);
         TabHost.TabSpec spec =tabHost.newTabSpec("hola");
-        spec.setContent(R.id.tab1);
+        //spec.setContent(R.id.tab1);
         spec.setIndicator("Information");
         tabHost.addTab(spec);
 
-        spec.setContent(R.id.tab2);
+       // spec.setContent(R.id.tab2);
         spec.setIndicator("Dates");
         tabHost.addTab(spec);
 
         tabHost.setCurrentTab(0);
-    }
+    }*/
 
     @Override
     public int getItemCount() {
@@ -98,7 +99,7 @@ public class UniversityAdapter extends RecyclerView.Adapter<UniversityAdapter.Ho
         public ImageView imageView;
         public LinearLayout imgUny;
 		public CardView cardView;
-        public TabHost tabHost;
+       // public TabHost tabHost;
 
         public Holder(View itemView) {
             super(itemView);
@@ -106,7 +107,7 @@ public class UniversityAdapter extends RecyclerView.Adapter<UniversityAdapter.Ho
             name=(TextView)itemView.findViewById(R.id.txtNameUny);
 			id=(TextView)itemView.findViewById(R.id.txtIdUny);
             imgUny =(LinearLayout)itemView.findViewById(R.id.imgUny);
-            tabHost=(TabHost)itemView.findViewById(R.id.tabHost);
+            //tabHost=(TabHost)itemView.findViewById(R.id.tabHost);
 //            imageView=(ImageView)itemView.findViewById(R.id.imgUny);
 			cardView=(CardView)itemView.findViewById(R.id.cardUny);
         }
